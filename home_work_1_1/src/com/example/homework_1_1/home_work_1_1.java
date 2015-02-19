@@ -3,6 +3,8 @@ package com.example.homework_1_1;
 /**
  * Created by v.krizhanovskiy on 19.02.2015.
  */
+import java.util.Scanner;
+
 public class home_work_1_1 {
 
     public static void main(String[] args) {
@@ -11,6 +13,7 @@ public class home_work_1_1 {
 
         System.out.print("Введите количество элементов массива: ");
 
+        //Проверка является ли введенное число целым
         if(sc.hasNextInt()) {
             n = sc.nextInt();
 
@@ -23,16 +26,31 @@ public class home_work_1_1 {
                 anArray[i] = sc.nextInt();
             }
 
-            // сортировка массива
-            for(int i = 0; i < n - 1; i++){
-                for(int j = 0; j < n - i -1; j++){
-                    if(anArray[j] > anArray[j + 1]){
-                        int a = anArray[j];
-                        anArray[j] = anArray[j+1];
-                        anArray[j+1] = a;
+            int ifirst = 0;
+
+            //сортировка массива
+            for (int i = ifirst; i < anArray.length - 1; i++){
+
+                int minj = ifirst;
+                int min = anArray[minj];
+
+                //поиск минимального элемента массива
+                for (int j = ifirst; j < anArray.length - 1; j++){
+                    if (min > anArray[j + 1]){
+                        min = anArray[j+1];
+                        minj = j+1;
                     }
                 }
+
+                //проверка условия нужно ли менять местами начальный элемент с найденным минимальным
+                if (minj != ifirst){
+                    int a = anArray[ifirst];
+                    anArray[ifirst] = anArray[minj];
+                    anArray[minj] = a;
+                }
+                ifirst++;
             }
+
 
             //распечатка массива
             for(int i = 0; i < n; i++){
