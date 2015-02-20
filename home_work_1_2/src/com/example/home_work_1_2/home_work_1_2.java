@@ -13,7 +13,7 @@ public class home_work_1_2 {
         int n;
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Введите количество элементов массива: ");
+        System.out.print("Введите число Фибоначчи: ");
 
         //Проверка является ли введенное число целым
         if(sc.hasNextInt()) {
@@ -22,42 +22,17 @@ public class home_work_1_2 {
             int[] anArray;
             anArray = new int[n];
 
+            //инициализация первых элементов массива
+            anArray[0] = 0;
+            anArray[1] = 1;
+
             //заполнение массива
-            for(int i = 0; i < n; i++){
-                System.out.print("Введите " + i + "-ый элемент: ");
-                anArray[i] = sc.nextInt();
+            for(int i = 2; i < n; i++){
+                anArray[i] = anArray[i-1] + anArray[i-2];
             }
 
-            int ifirst = 0;
-
-            //сортировка массива
-            for (int i = ifirst; i < anArray.length - 1; i++){
-
-                int minj = ifirst;
-                int min = anArray[minj];
-
-                //поиск минимального элемента массива
-                for (int j = ifirst; j < anArray.length - 1; j++){
-                    if (min > anArray[j + 1]){
-                        min = anArray[j+1];
-                        minj = j+1;
-                    }
-                }
-
-                //проверка условия нужно ли менять местами начальный элемент с найденным минимальным
-                if (minj != ifirst){
-                    int a = anArray[ifirst];
-                    anArray[ifirst] = anArray[minj];
-                    anArray[minj] = a;
-                }
-                ifirst++;
-            }
-
-
-            //распечатка массива
-            for(int i = 0; i < n; i++){
-                System.out.print(" " + anArray[i]);
-            }
+            //распечатка значения
+            System.out.print(" " + anArray[n-1]);
 
         } else {
             System.out.println("Вы ввели не целое число");
